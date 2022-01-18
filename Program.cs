@@ -3,36 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CsharpAdvanced;
 
 namespace ValueRef
 {
-    public class PosicaoClass // reference type
-    {
-        public int X;
-        public int Y;
-    }
-
     class Program
     {
-        public static void Dobrar (ref int valor) //ref == utiliza-lo como um valor de referencia.
-        {
-            valor = valor * 2;
-        }
-
-        public static void Dobrar (PosicaoClass valor) //ref == utiliza-lo como um valor de referencia.
-        {
-            valor.X = valor.X * 2;
-            valor.Y = valor.Y * 2;
-        }
-
         static void Main(string[] args)
         {
-            int x = 10;
-            Dobrar(ref x);
-            Console.WriteLine(x);
+            PosicaoClass pc = new PosicaoClass();
+            pc.X = 10;
+            pc.Y = 20;
 
-            RefTypeInt();
-            Console.ReadLine();
+            PosicaoStruct ps = new PosicaoStruct();
+            ps.X = 30;
+            ps.Y = 40;
+            
+            PosicaoStruct ps2 = ps;
+            ps2.Y = 50;
+
+            Console.WriteLine(pc);
+            Console.WriteLine(ps.ToString());
+            Console.WriteLine(ps2.ToString());
         }
 
         private static void RefTypeInt()
@@ -46,8 +38,8 @@ namespace ValueRef
             pos2 = pos1; // apontando ambos para a mesma posição de memória
             pos2.X = 50;
 
-            Dobrar(pos1);
-            Dobrar(pos2);
+            pos1.Dobrar(pos1);
+            pos2.Dobrar(pos2);
             Console.WriteLine(pos1.X);
             Console.WriteLine(pos1.Y);
             Console.WriteLine(pos2.X);
