@@ -11,26 +11,22 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            Cliente cli = new Cliente();
-            cli.codigoCliente = 123;
-            cli.Nome = "Vinicius";
-            cli.Contato.Tipo = "Telefone";
-            cli.Contato.Descricao = "99999999";
-            Console.WriteLine(cli);
-
-            Cliente cli2 = new Cliente(456);
-            cli2.Nome = "Vinicius 2";
-            cli2.Contato.Tipo = "Telefone";
-            cli2.Contato.Descricao = "99999999";
-            Console.WriteLine(cli2);
-
-            Cliente cli3 = new Cliente(789, "sla");
-            cli3.Contato.Tipo = "Telefone";
-            cli3.Contato.Descricao = "99999999";
-            Console.WriteLine(cli3);
-            
-            ClienteVIP  cliVIP = new ClienteVIP(901, "teste");
-            Console.WriteLine(cliVIP);
+            try
+            {
+                Aluno a = new Aluno();
+                a.Matricula = 123;
+                a.Nome = "Vinicius";
+                a.Mensalidade = -100;
+                a.Tipo = TipoAluno.Regular;
+            } 
+            catch(MensalidadeNegativaException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void RefTypeInt()
