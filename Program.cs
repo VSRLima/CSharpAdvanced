@@ -11,22 +11,21 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Aluno a = new Aluno();
-                a.Matricula = 123;
-                a.Nome = "Vinicius";
-                a.Mensalidade = -100;
-                a.Tipo = TipoAluno.Regular;
-            } 
-            catch(MensalidadeNegativaException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Ator a = new Ator() {
+                Codigo = 10,
+                Nome = "Steve",
+                Filme =  new List<Filme>()
+                {
+                    new Filme() {
+                        Nome = "Prison Break",
+                        Ano = 2015
+                    },
+                    new Filme() {
+                        Nome = "Programa",
+                        Ano = 2031
+                    }
+                }
+            };
         }
 
         private static void RefTypeInt()
