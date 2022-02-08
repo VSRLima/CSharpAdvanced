@@ -11,21 +11,23 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            Ator a = new Ator() {
-                Codigo = 10,
-                Nome = "Steve",
-                Filme =  new List<Filme>()
-                {
-                    new Filme() {
-                        Nome = "Prison Break",
-                        Ano = 2015
-                    },
-                    new Filme() {
-                        Nome = "Programa",
-                        Ano = 2031
-                    }
-                }
-            };
+            // STATIC VERSION
+            // var temperatura = 35.0;
+            // temperatura = ConversorStatic.CelsiusToFah(temperatura);
+            // Console.WriteLine(temperatura);
+            // Console.ReadLine();
+
+            var c1 = new ConversorInstance();
+            // As the property "Temperatura" is static, it can be instaciated as static only on the class, but if you want to call it, you'll have to call the object and it static propety as shown bellow: 
+            ConversorInstance.temperatura = 30;
+            var celcius = c1.CelsiusToFah();
+            Console.WriteLine(celcius);
+
+            var c2 = new ConversorInstance();
+            ConversorInstance.temperatura = 35;
+            var fah = c2.FahToCelsius();
+            Console.WriteLine(fah);
+            Console.ReadLine();
         }
 
         private static void RefTypeInt()
