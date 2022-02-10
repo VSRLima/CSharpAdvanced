@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using CsharpAdvanced;
 
 namespace ValueRef
@@ -11,23 +12,9 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            // STATIC VERSION
-            // var temperatura = 35.0;
-            // temperatura = ConversorStatic.CelsiusToFah(temperatura);
-            // Console.WriteLine(temperatura);
-            // Console.ReadLine();
-
-            var c1 = new ConversorInstance();
-            // As the property "Temperatura" is static, it can be instaciated as static only on the class, but if you want to call it, you'll have to call the object and it static propety as shown bellow: 
-            ConversorInstance.temperatura = 30;
-            var celcius = c1.CelsiusToFah();
-            Console.WriteLine(celcius);
-
-            var c2 = new ConversorInstance();
-            ConversorInstance.temperatura = 35;
-            var fah = c2.FahToCelsius();
-            Console.WriteLine(fah);
-            Console.ReadLine();
+            var ds = new DataSet();
+            ds.WriteJSON("dados.xml");
+            ds.WriteXml("dados.js");
         }
 
         private static void RefTypeInt()
