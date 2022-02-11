@@ -12,9 +12,11 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            var ds = new DataSet();
-            ds.WriteJSON("dados.xml");
-            ds.WriteXml("dados.js");
+            Usuario user = new Usuario() {Cod = 1, Nome = "vinicius", Senha = "123" };
+            if(user.Auth())
+                Console.WriteLine("Usuário Autenticado com sucesso");
+            else
+                Console.WriteLine("Não foi autenticado");
         }
 
         private static void RefTypeInt()
