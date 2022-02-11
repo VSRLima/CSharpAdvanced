@@ -12,11 +12,10 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            Usuario user = new Usuario() {Cod = 1, Nome = "vinicius", Senha = "123" };
-            if(user.Auth())
-                Console.WriteLine("Usuário Autenticado com sucesso");
-            else
-                Console.WriteLine("Não foi autenticado");
+            var p1 = new Pilha<string>();
+            p1.Push("ae");
+            p1.Push("teste");
+            string pessoa = p1.Pop();
         }
 
         private static void RefTypeInt()
