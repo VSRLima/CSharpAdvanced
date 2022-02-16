@@ -12,10 +12,20 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            var p1 = new Pilha<string>();
-            p1.Push("ae");
-            p1.Push("teste");
-            string pessoa = p1.Pop();
+            // var Dlg = new Dialogo();
+            // Dlg.Show(Mensagem: "Confirmar operação", Delay: 10, MostrarBotaoOK: true, MostrarBotaoCancel: true, MostrarBotaoNO: false);
+
+            var parameters = new DialogParams ()
+            {
+                Mensagem = "aaaa",
+                MostrarBotaoOK = true,
+                Delay = 10,
+                MostrarBotaoNO = true,
+                MostrarBotaoCancel = false
+            };
+            
+            var Dlg = new Dialogo();
+            Dlg.Show(parameters: parameters);
         }
 
         private static void RefTypeInt()
