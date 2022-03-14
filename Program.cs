@@ -12,20 +12,15 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            // var Dlg = new Dialogo();
-            // Dlg.Show(Mensagem: "Confirmar operação", Delay: 10, MostrarBotaoOK: true, MostrarBotaoCancel: true, MostrarBotaoNO: false);
-
-            var parameters = new DialogParams ()
-            {
-                Mensagem = "aaaa",
-                MostrarBotaoOK = true,
-                Delay = 10,
-                MostrarBotaoNO = true,
-                MostrarBotaoCancel = false
-            };
-            
-            var Dlg = new Dialogo();
-            Dlg.Show(parameters: parameters);
+            var prods = new Produtos();
+            prods.Add("MT 03");
+            prods.Add("R3");
+            prods.Add("NINJA");
+            Console.WriteLine(prods[0]);
+            Console.WriteLine(prods[1]);
+            Console.WriteLine(prods[2]);
+            Console.WriteLine("A posição da moto MT 03 é: " + prods["MT 03"]);
+            Console.ReadLine();
         }
 
         private static void RefTypeInt()
