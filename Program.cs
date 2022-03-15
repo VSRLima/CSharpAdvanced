@@ -12,15 +12,19 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            var prods = new Produtos();
-            prods.Add("MT 03");
-            prods.Add("R3");
-            prods.Add("NINJA");
-            Console.WriteLine(prods[0]);
-            Console.WriteLine(prods[1]);
-            Console.WriteLine(prods[2]);
-            Console.WriteLine("A posição da moto MT 03 é: " + prods["MT 03"]);
-            Console.ReadLine();
+            Arquivo mp3 = new Musica() { Nome = "Mirrors - Justin TimberLake"};
+            Arquivo doc = new DocumentoWord() { Nome = ".net Magazine - Artigo POO"};
+            Arquivo img = new Imagem() { Nome = "Golden Gate Bridge"};
+            Windows windows = new Windows();
+
+            windows.Add(mp3);
+            windows.Add(doc);
+            windows.Add(img);
+            
+            windows.Abrir(mp3);
+            windows.Abrir(doc);
+            windows.Abrir(img);
+            Console.WriteLine();
         }
 
         private static void RefTypeInt()
