@@ -12,19 +12,9 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            Arquivo mp3 = new Musica() { Nome = "Mirrors - Justin TimberLake"};
-            Arquivo doc = new DocumentoWord() { Nome = ".net Magazine - Artigo POO"};
-            Arquivo img = new Imagem() { Nome = "Golden Gate Bridge"};
-            Windows windows = new Windows();
-
-            windows.Add(mp3);
-            windows.Add(doc);
-            windows.Add(img);
-            
-            windows.Abrir(mp3);
-            windows.Abrir(doc);
-            windows.Abrir(img);
-            Console.WriteLine();
+            Pedido pedido = new Pedido();
+            pedido.Fechar(2000);
+            Console.ReadLine();
         }
 
         private static void RefTypeInt()
