@@ -12,9 +12,25 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            Pedido pedido = new Pedido();
-            pedido.Fechar(2000);
-            Console.ReadLine();
+            Console.WriteLine("Login: ");
+            string? user = Console.ReadLine();
+            Console.WriteLine("Senha: ");
+            string? password = Console.ReadLine();
+
+            try
+            {
+                Auth.Login(user, password);
+            }
+            catch (InvalidUserException ie)
+            { 
+                Console.WriteLine(ie.Message);
+            }
+            catch (InvalidPasswordException ip)
+            {
+                Console.WriteLine(ip.Message);
+            }
+            
+            return;
         }
 
         private static void RefTypeInt()
