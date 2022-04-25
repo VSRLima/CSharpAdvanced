@@ -13,16 +13,11 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-           var con = new SqlConnection();
-           try
+           using (var con = new SqlConnection())
            {
                
            }
-           finally
-           {
-               if(con != null)
-                con.Dispose();
-           }
+           
         }
 
         private static void RefTypeInt()
