@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using CsharpAdvanced;
+using System.Data.SqlClient;
 
 namespace ValueRef
 {
@@ -12,25 +13,7 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Login: ");
-            string? user = Console.ReadLine();
-            Console.WriteLine("Senha: ");
-            string? password = Console.ReadLine();
-
-            try
-            {
-                Auth.Login(user, password);
-            }
-            catch (InvalidUserException ie)
-            { 
-                Console.WriteLine(ie.Message);
-            }
-            catch (InvalidPasswordException ip)
-            {
-                Console.WriteLine(ip.Message);
-            }
-            
-            return;
+           var con = new SqlConnection();
         }
 
         private static void RefTypeInt()
