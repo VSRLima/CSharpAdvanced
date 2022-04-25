@@ -13,13 +13,19 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-           using (Conexao con = new Conexao())
-           {
-               con.Connect();
-               con.Close();
-           }
-           Console.ReadLine();
-           
+            ClientsList cls = new ClientsList();
+            cls.Add("Vinicius");
+            cls.Add("Mayanne");
+            cls.Add("Paulo");
+            cls.Add("Wesley");
+            cls.Add("Teste1");
+            cls.Add("Teste2");
+
+            foreach (var cl in cls)
+            {
+                Console.WriteLine(cl);
+            }
+            Console.ReadLine();
         }
 
         private static void RefTypeInt()
