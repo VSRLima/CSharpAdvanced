@@ -13,10 +13,12 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-           using (var con = new SqlConnection())
+           using (Conexao con = new Conexao())
            {
-               
+               con.Connect();
+               con.Close();
            }
+           Console.ReadLine();
            
         }
 
