@@ -12,19 +12,35 @@ namespace ValueRef
 {
     class Program
     {
+        public class Pedido
+        {
+            public int CodPedido;
+            public string Cliente;
+            public double Valor;
+        }
         static void Main(string[] args)
         {
-            var lista = new Hashtable();
-            lista.Add(1, "Vinicius");
-            lista.Add(2, "Mayanne");
-            lista.Add(3, "Simba");
+            var pedidos = new Dictionary<int, Pedido>();
+            var p1 = new Pedido() { CodPedido = 1, Cliente = "Vinicius", Valor = 4000 };
+            var p2 = new Pedido() { CodPedido = 2, Cliente = "Mayanne", Valor = 4500 };
+            var p3 = new Pedido() { CodPedido = 3, Cliente = "Simba", Valor = 400 };
 
-            Console.WriteLine(lista[3]);
-
-            foreach (var obj in lista.Values)
+            pedidos.Add(1, p1);
+            pedidos.Add(2, p2);
+            pedidos.Add(3, p3);
+            Console.WriteLine("Nomes dos clientes que fizeram pedidos: ");
+            foreach (Pedido p in pedidos.Values)
             {
-                Console.WriteLine(obj);
+                Console.WriteLine(p.Cliente);
             }
+
+            Console.WriteLine("Pedidos:");
+            foreach (KeyValuePair<int, Pedido> kvp in pedidos)
+            {
+                Console.WriteLine($"{kvp.Key} = {kvp.Value.Cliente}");
+            }
+
+            Console.WriteLine($"Soma dos pedidos: {pedidos.Sum(p => p.Value.Valor)}");
         }
 
         private static void RefTypeInt()

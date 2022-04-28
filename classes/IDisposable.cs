@@ -7,9 +7,9 @@ using System.Data;
 
 namespace CsharpAdvanced
 {
-    public static class Conexao: IDisposable 
+    public class Conexao: IDisposable 
     {
-        public int Handle;
+        public string Handle;
 
         public Conexao() 
         {
@@ -30,7 +30,7 @@ namespace CsharpAdvanced
         public void Dispose() 
         {
             Dispose(true);
-            GC.SuppressFinalize();
+            // GC.SuppressFinalize();
         }
 
         private void OpenResource()
