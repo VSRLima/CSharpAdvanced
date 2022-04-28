@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using CsharpAdvanced;
 using System.Data.SqlClient;
+using System.Collections;
 
 namespace ValueRef
 {
@@ -13,19 +14,17 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            ClientsList cls = new ClientsList();
-            cls.Add("Vinicius");
-            cls.Add("Mayanne");
-            cls.Add("Paulo");
-            cls.Add("Wesley");
-            cls.Add("Teste1");
-            cls.Add("Teste2");
+            var lista = new Hashtable();
+            lista.Add(1, "Vinicius");
+            lista.Add(2, "Mayanne");
+            lista.Add(3, "Simba");
 
-            foreach (var cl in cls)
+            Console.WriteLine(lista[3]);
+
+            foreach (var obj in lista.Values)
             {
-                Console.WriteLine(cl);
+                Console.WriteLine(obj);
             }
-            Console.ReadLine();
         }
 
         private static void RefTypeInt()
