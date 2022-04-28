@@ -12,30 +12,43 @@ namespace ValueRef
 {
     class Program
     {
-        public class Documento
+        public class Correntista
         {
-            public int Codigo;
-            public string? Tipo;
+            public string? Agencia;
+            public string? Conta;
             public string? Nome;
+
+            public override string ToString()
+            {
+                return $"Agência: {Agencia} // Conta: {Conta} // Nome: {Nome} ";
+            }
         }
         static void Main(string[] args)
         {
-            var d1 = new Documento() { Codigo = 1, Nome = "Planilha", Tipo = "xls"};
-            var d2 = new Documento() { Codigo = 2, Nome = "Artigo", Tipo = "doc"};
-            var d3 = new Documento() { Codigo = 3, Nome = "Apresentação", Tipo = "ppt"};
-            var pilha = new Stack<Documento>();
-            pilha.Push(d1);
-            pilha.Push(d2);
-            pilha.Push(d3);
-            Console.WriteLine(pilha.Count);
-            var obj = pilha.Pop();
-            Console.WriteLine(obj?.Nome);
+            var p1 = new Correntista() { Agencia = "123", Conta = "456", Nome = "Vinicius"};
+            var p2 = new Correntista() { Agencia = "456", Conta = "123", Nome = "Mayanne"};
+            var p3 = new Correntista() { Agencia = "789", Conta = "000", Nome = "Simba"};
 
-            Console.WriteLine(pilha?.Peek().Nome);
+            var fila = new Queue();
+            fila.Enqueue(p1);
+            fila.Enqueue(p2);
+            fila.Enqueue(p3);
 
-            while(pilha.Count > 0)
-                Console.WriteLine(pilha.Pop().Nome);
+            Console.WriteLine("Correntistas aguardando na fila:");
+            foreach (var f in fila)
+            {
+                Console.WriteLine(f);
+            }
+
+            
+            while(fila.Count > 0)
+            {
+                    Console.WriteLine("Pressione uma tecla para chamar correntista:");
+                    Console.ReadKey();
+                    Console.WriteLine($"Chamando: {fila.Dequeue()}");
+            }
+            Console.WriteLine("Fila vazia");
         }
-
+        
     }
 }
