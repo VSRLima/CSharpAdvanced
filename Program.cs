@@ -17,45 +17,72 @@ namespace ValueRef
         static void Main(string[] args)
         {
             Type t = typeof(Carro);
-            getPropriedades(t);
+            GetParametros(t);
             Console.ReadLine();
-
-
-            //EXEMPLO 2: Referencia a partir de uma string
-            // Type t = Type.GetType("Reflexao.Carro", false, true);
-            // Console.WriteLine(t.FullName);
-            // Console.ReadLine();
-
-
-            // EXEMPLO 1: Referencia direta a partir das propriedades do tipo pesquisado
-            // Carro c = new Carro();
-            // Type t = c.GetType();
-            // Console.WriteLine(t.FullName);
-            // Console.ReadLine();
         }
 
-        private static void getPropriedades(Type t)
+        private static void GetParametros(Type t)
         {
-            StringBuilder str = new StringBuilder();
-            str.AppendLine($"Informações do tipo: {t.Name}");
-            str.AppendLine($"Nome completo: {t.FullName}");
-            str.AppendLine($"Namespace: {t.Name}");
-
-            Type tBase = t.BaseType;
-
-            if(tBase != null) 
+            Console.WriteLine("Parâmetros do tipo {0}", t.Name);
+            MethodInfo[] metodos = t.GetMethods();
+            foreach (var m in metodos)
             {
-                str.AppendLine($"Tipo Base: {t.BaseType.Name}");
+                string resultado = m.ReturnType.FullName;
+                StringBuilder str = new StringBuilder();
+                foreach (ParameterInfo pi in m.GetParameters())
+                {
+                    str.Append(pi.ParameterType.FullName);
+                    str.Append(" ");
+                    str.Append(pi.Name);
+                    str.Append(", ");
+                }
+                Console.WriteLine("{0} {1}({2})", resultado, m.Name, str.ToString().TrimEnd(',', ' '));
             }
+        }
 
-            MemberInfo[] members = t.GetMembers();
-
-            foreach (var m in members)
+        private static void GetInterfaces(Type t)
+        {
+            Console.WriteLine("Interfaces do tipo {0}", t.Name);
+            foreach (Type i in t.GetInterfaces())
             {
-                str.AppendLine(m.MemberType + " " + m.Name);
+                Console.WriteLine("\t{0}", i.Name);
             }
+        }
 
-            Console.WriteLine(str);
+        private static void GetPropriedades(Type t)
+        {
+            Console.WriteLine("Propriedades:");
+            PropertyInfo[] propriedades = t.GetProperties();
+            foreach (PropertyInfo propriedade in propriedades)
+            {
+                Console.WriteLine(propriedade.Name);
+            }
+        }
+
+        private static void GetCampos(Type t)
+        {
+            Console.WriteLine("Campos: ");
+            FieldInfo[] fields = t.GetFields();
+            foreach (var f in fields)
+            {
+                Console.WriteLine(f.Name);
+            }
+        }
+
+        private static void GetMetodo(Type t)
+        {
+            MethodInfo mi =  t.GetMethod("isMoving");
+            Console.WriteLine(mi.Name);
+        }
+
+        private static void GetMetodos(Type t)
+        {
+            Console.WriteLine("Métodos: ");
+            MethodInfo[] mi = t.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+            foreach (var m in mi)
+            {
+                Console.WriteLine($"Método: {m.Name}");
+            }
         }
     }
 }
