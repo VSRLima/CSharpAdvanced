@@ -7,48 +7,55 @@ using System.Data;
 using CsharpAdvanced;
 using System.Data.SqlClient;
 using System.Collections;
+using Reflexao;
+using System.Reflection;
 
 namespace ValueRef
 {
     class Program
     {
-        public class Correntista
-        {
-            public string? Agencia;
-            public string? Conta;
-            public string? Nome;
-
-            public override string ToString()
-            {
-                return $"Agência: {Agencia} // Conta: {Conta} // Nome: {Nome} ";
-            }
-        }
         static void Main(string[] args)
         {
-            var p1 = new Correntista() { Agencia = "123", Conta = "456", Nome = "Vinicius"};
-            var p2 = new Correntista() { Agencia = "456", Conta = "123", Nome = "Mayanne"};
-            var p3 = new Correntista() { Agencia = "789", Conta = "000", Nome = "Simba"};
+            Type t = typeof(Carro);
+            getPropriedades(t);
+            Console.ReadLine();
 
-            var fila = new Queue();
-            fila.Enqueue(p1);
-            fila.Enqueue(p2);
-            fila.Enqueue(p3);
 
-            Console.WriteLine("Correntistas aguardando na fila:");
-            foreach (var f in fila)
-            {
-                Console.WriteLine(f);
-            }
+            //EXEMPLO 2: Referencia a partir de uma string
+            // Type t = Type.GetType("Reflexao.Carro", false, true);
+            // Console.WriteLine(t.FullName);
+            // Console.ReadLine();
 
-            
-            while(fila.Count > 0)
-            {
-                    Console.WriteLine("Pressione uma tecla para chamar correntista:");
-                    Console.ReadKey();
-                    Console.WriteLine($"Chamando: {fila.Dequeue()}");
-            }
-            Console.WriteLine("Fila vazia");
+
+            // EXEMPLO 1: Referencia direta a partir das propriedades do tipo pesquisado
+            // Carro c = new Carro();
+            // Type t = c.GetType();
+            // Console.WriteLine(t.FullName);
+            // Console.ReadLine();
         }
-        
+
+        private static void getPropriedades(Type t)
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine($"Informações do tipo: {t.Name}");
+            str.AppendLine($"Nome completo: {t.FullName}");
+            str.AppendLine($"Namespace: {t.Name}");
+
+            Type tBase = t.BaseType;
+
+            if(tBase != null) 
+            {
+                str.AppendLine($"Tipo Base: {t.BaseType.Name}");
+            }
+
+            MemberInfo[] members = t.GetMembers();
+
+            foreach (var m in members)
+            {
+                str.AppendLine(m.MemberType + " " + m.Name);
+            }
+
+            Console.WriteLine(str);
+        }
     }
 }
