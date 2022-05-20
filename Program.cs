@@ -16,9 +16,11 @@ namespace ValueRef
     {
         static void Main(string[] args)
         {
-            Type t = typeof(Carro);
-            GetParametros(t);
-            Console.ReadLine();
+           Type t = Type.GetType("Reflexao.Cliente");
+           ConstructorInfo ctor = t.GetConstructor(new Type[] { typeof(string) });
+           var obj = ctor.Invoke(new object[] { "Vinicius "});
+           MethodInfo mi = t.GetMethod("MostrarDados");
+           mi.Invoke(obj, new object[] { "Sr. " });
         }
 
         private static void GetParametros(Type t)
